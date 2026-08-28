@@ -29,7 +29,7 @@ The accompanying document (`.tex` / `.pdf`) presents an analytical, optimization
 ### 2. Locally-Weighted Regression (LWR) & $\eta_{\mathrm{guarantee}}$
 * **Objective Function**: $J(\theta) = \frac{1}{2m}(X\theta - Y)^T W(X\theta - Y)$ where $W = \mathrm{diag}(\omega^{(1)}, \dots, \omega^{(m)})$ and $\omega^{(i)} = \exp\left(-\frac{\|x^{(i)} - x_q\|_2^2}{2\tau^2}\right)$.
 * **Hessian Outer-Product Decomposition**: $H = \frac{1}{m} \sum_{p=1}^m \omega^{(p)} x^{(p)} (x^{(p)})^T$
-* **Spectral Bound using Subadditivity & Rank-1 Property** ($\lambda_{\max}(u u^T) = \|u\|_2^2$): $\lambda_{\max}(H) \le \frac{1}{m} \sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2$
+* **Spectral Bound using Rank - 1 property** ($\lambda_{\max}(u u^T) = \|u\|_2^2$): $\lambda_{\max}(H) \le \frac{1}{m} \sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2$
 * **Guaranteed Safe Step Size**: $\eta_{\mathrm{guarantee}} = \frac{m}{\sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2} \le \frac{2}{\lambda_{\max}(H)}$
   *(Guarantees convergence without ever computing matrix products or eigenvalues).*
 
