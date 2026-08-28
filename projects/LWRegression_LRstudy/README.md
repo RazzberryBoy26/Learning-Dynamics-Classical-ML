@@ -21,23 +21,17 @@ The accompanying document (`.tex` / `.pdf`) presents an analytical, optimization
 ### 1. Linear Regression Convergence Dynamics
 * **Loss Function**: $J(\Theta) = \frac{1}{2m} (X\Theta - Y)^T (X\Theta - Y)$
 * **Error Recurrence**: $e^{(t+1)} = \left(I - \frac{\eta}{m} X^T X\right) e^{(t)} = (I - \eta H)e^{(t)}$
-* **Spectral Convergence Condition**:
-  $$\rho(I - \eta H) < 1 \implies 0 < \eta < \frac{2}{\lambda_{\max}(H)}$$
-* **Optimal Step Size Derivation**:
-  By minimizing the worst-case spectral radius via minimax optimization of the iteration bound:
-  $$\eta_{\mathrm{opt}} = \frac{2}{\lambda_{\max}(H) + \lambda_{\min}(H)}$$
+* **Spectral Convergence Condition**: $\rho(I - \eta H) < 1 \implies 0 < \eta < \frac{2}{\lambda_{\max}(H)}$
+* **Optimal Step Size Derivation**: By minimizing the worst-case spectral radius via minimax optimization of the iteration bound: $\eta_{\mathrm{opt}} = \frac{2}{\lambda_{\max}(H) + \lambda_{\min}(H)}$
 
 ---
 
 ### 2. Locally-Weighted Regression (LWR) & $\eta_{\mathrm{guarantee}}$
 * **Objective Function**: $J(\theta) = \frac{1}{2m}(X\theta - Y)^T W(X\theta - Y)$ where $W = \mathrm{diag}(\omega^{(1)}, \dots, \omega^{(m)})$ and $\omega^{(i)} = \exp\left(-\frac{\|x^{(i)} - x_q\|_2^2}{2\tau^2}\right)$.
-* **Hessian Outer-Product Decomposition**:
-  $$H = \frac{1}{m} \sum_{p=1}^m \omega^{(p)} x^{(p)} (x^{(p)})^T$$
-* **Spectral Bound using Subadditivity & Rank-1 Property** ($\lambda_{\max}(u u^T) = \|u\|_2^2$):
-  $$\lambda_{\max}(H) \le \frac{1}{m} \sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2$$
-* **Guaranteed Safe Step Size**:
-  $$\eta_{\mathrm{guarantee}} = \frac{m}{\sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2} \le \frac{2}{\lambda_{\max}(H)}$$
-  *(Guarantees convergence without ever computing matrix products or eigenvalues)*.
+* **Hessian Outer-Product Decomposition**: $H = \frac{1}{m} \sum_{p=1}^m \omega^{(p)} x^{(p)} (x^{(p)})^T$
+* **Spectral Bound using Subadditivity & Rank-1 Property** ($\lambda_{\max}(u u^T) = \|u\|_2^2$): $\lambda_{\max}(H) \le \frac{1}{m} \sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2$
+* **Guaranteed Safe Step Size**: $\eta_{\mathrm{guarantee}} = \frac{m}{\sum_{p=1}^m \omega^{(p)} \|x^{(p)}\|_2^2} \le \frac{2}{\lambda_{\max}(H)}$
+  *(Guarantees convergence without ever computing matrix products or eigenvalues).*
 
 ---
 
